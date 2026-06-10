@@ -1,3 +1,41 @@
+      name: Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  IMAGE_NAME: ghcr.io/cassianomc/portfolio-devops:latest
+  CONTAINER_NAME: portfolio
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Login no GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build da imagem Docker
+        run: docker build -t $IMAGE_NAME .
+
+      - name: Push da imagem para o GHCR
+        run: docker push $IMAGE_NAME
+
+      - name: Configurar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2_key
+          chmod 600 ~/.ssh/ec2_key
+
       - name: Deploy na EC2
         env:
           EC2_USER: ${{ secrets.EC2_USER }}
