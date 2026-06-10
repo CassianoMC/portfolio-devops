@@ -10,7 +10,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/portfolio-devops:latest
+  IMAGE_NAME: ghcr.io/cassianomc/portfolio-devops:latest
   CONTAINER_NAME: portfolio
 
 jobs:
@@ -41,7 +41,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2_key ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
             echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-            docker pull ghcr.io/${{ github.repository_owner }}/portfolio-devops:latest
+            docker pull ghcr.io/cassianomc/portfolio-devops:latest
 
             docker stop portfolio || true
             docker rm portfolio || true
@@ -50,5 +50,5 @@ jobs:
               --name portfolio \
               --restart always \
               -p 80:80 \
-              ghcr.io/${{ github.repository_owner }}/portfolio-devops:latest
+              ghcr.io/cassianomc/portfolio-devops:latest
           EOF
