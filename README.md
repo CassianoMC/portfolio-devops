@@ -356,7 +356,7 @@ Deploy Automático
 
 # 📈 Observabilidade
 
-Foi implementada uma stack completa de observabilidade para monitoramento da infraestrutura e containers.
+Foi implementada uma stack de observabilidade para monitoramento da infraestrutura e containers.
 
 ## Prometheus
 
