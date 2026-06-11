@@ -1,21 +1,35 @@
 # 🚀 Portfólio DevOps na AWS
 
-![AWS](https://img.shields.io/badge/AWS-EC2-orange?logo=amazonaws)
-![Terraform](https://img.shields.io/badge/Terraform-IaC-purple?logo=terraform)
-![Docker](https://img.shields.io/badge/Docker-Containers-blue?logo=docker)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI/CD-black?logo=githubactions)
-![Linux](https://img.shields.io/badge/Linux-Ubuntu-yellow?logo=ubuntu)
-![Status](https://img.shields.io/badge/Status-Online-brightgreen)
+![AWS](https://img.shields.io/badge/AWS-EC2-orange)
+![Terraform](https://img.shields.io/badge/Terraform-IaC-purple)
+![Docker](https://img.shields.io/badge/Docker-Containers-blue)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-black)
+![Prometheus](https://img.shields.io/badge/Prometheus-Monitoring-orange)
+![Grafana](https://img.shields.io/badge/Grafana-Dashboards-yellow)
+![Alertmanager](https://img.shields.io/badge/Alertmanager-Alerts-red)
+![Linux](https://img.shields.io/badge/Linux-Ubuntu-green)
 
-Projeto desenvolvido para demonstrar conhecimentos em Cloud Computing, Infraestrutura como Código (IaC), Containerização e CI/CD utilizando ferramentas amplamente utilizadas no mercado DevOps.
+Projeto desenvolvido para demonstrar conhecimentos práticos em:
+
+* Cloud Computing
+* Infraestrutura como Código (IaC)
+* Containerização
+* CI/CD
+* Observabilidade
+* Monitoramento de Infraestrutura
+* Monitoramento de Containers
+
+utilizando ferramentas amplamente adotadas no mercado DevOps.
 
 ---
 
 # 📋 Sobre o Projeto
 
-Este projeto consiste na criação e publicação de uma página web pessoal para apresentação profissional, executada em uma infraestrutura provisionada na AWS e automatizada através de pipelines CI/CD.
+Este projeto consiste na criação e publicação de uma página web pessoal hospedada em uma infraestrutura provisionada na AWS e totalmente automatizada através de pipelines CI/CD.
 
-O objetivo foi aplicar na prática conceitos fundamentais de:
+Além da publicação da aplicação, foi implementada uma stack completa de observabilidade para monitoramento da infraestrutura e dos containers em execução.
+
+Conceitos praticados:
 
 * Linux
 * AWS
@@ -24,6 +38,12 @@ O objetivo foi aplicar na prática conceitos fundamentais de:
 * GitHub Actions
 * GitHub Container Registry (GHCR)
 * CI/CD
+* Observabilidade
+* Prometheus
+* Grafana
+* Alertmanager
+* Node Exporter
+* cAdvisor
 * Infraestrutura como Código
 * Automação de Deploy
 
@@ -31,11 +51,11 @@ O objetivo foi aplicar na prática conceitos fundamentais de:
 
 # 🔗 Links
 
-### 🌐 Aplicação
+## 🌐 Aplicação
 
 https://cassianomc.github.io/portfolio-devops/
 
-### 📂 Repositório
+## 📂 Repositório
 
 https://github.com/cassianomc/portfolio-devops
 
@@ -43,20 +63,12 @@ https://github.com/cassianomc/portfolio-devops
 
 # 🖥️ Preview
 
-> Adicione um print da aplicação na pasta `images`.
-
 ```text
-portfolio-devops/
-│
-├── images/
-│   └── portfolio-preview.png
-│
-└── README.md
+images/
+└── portfolio-preview.png
 ```
 
-Depois utilize:
-
-```md
+```markdown
 ![Preview da Aplicação](images/portfolio-preview.png)
 ```
 
@@ -65,39 +77,49 @@ Depois utilize:
 # 🏗️ Arquitetura da Solução
 
 ```text
-┌──────────────┐
-│ Desenvolvedor│
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│   GitHub     │
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│GitHub Actions│
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│    GHCR      │
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ AWS EC2      │
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ Docker       │
-└──────┬───────┘
-       │
-       ▼
-┌──────────────┐
-│ Aplicação    │
-└──────────────┘
+                     Git Push
+                         │
+                         ▼
+┌──────────────────────────────────┐
+│             GitHub               │
+└───────────────┬──────────────────┘
+                │
+                ▼
+┌──────────────────────────────────┐
+│         GitHub Actions           │
+│      Build + Deploy Pipeline     │
+└───────────────┬──────────────────┘
+                │
+                ▼
+┌──────────────────────────────────┐
+│               GHCR               │
+│   GitHub Container Registry      │
+└───────────────┬──────────────────┘
+                │
+                ▼
+┌─────────────────────────────────────────────┐
+│               AWS EC2 Ubuntu                │
+│                                             │
+│ Docker                                      │
+│ ├── Portfolio                               │
+│ ├── Prometheus                              │
+│ ├── Grafana                                 │
+│ ├── Alertmanager                            │
+│ ├── Node Exporter                           │
+│ └── cAdvisor                                │
+└─────────────────────────────────────────────┘
+```
+
+---
+
+# 📊 Arquitetura de Observabilidade
+
+```text
+Node Exporter ──┐
+                │
+cAdvisor ───────┼────► Prometheus ───► Grafana
+                │
+                └────► Alertmanager
 ```
 
 ---
@@ -115,6 +137,7 @@ Depois utilize:
 ## Containerização
 
 * Docker
+* Docker Compose
 
 ## CI/CD
 
@@ -123,6 +146,14 @@ Depois utilize:
 ## Registry
 
 * GitHub Container Registry (GHCR)
+
+## Observabilidade
+
+* Prometheus
+* Grafana
+* Alertmanager
+* Node Exporter
+* cAdvisor
 
 ## Sistema Operacional
 
@@ -153,6 +184,14 @@ portfolio-devops/
 │   ├── main.tf
 │   ├── variables.tf
 │   └── outputs.tf
+│
+├── observability/
+│   ├── docker-compose.yml
+│   ├── prometheus.yml
+│   ├── alert.rules.yml
+│   │
+│   └── alertmanager/
+│       └── alertmanager.yml
 │
 ├── images/
 │
@@ -186,19 +225,20 @@ terraform plan
 terraform apply
 ```
 
-### Recursos Provisionados
+## Recursos Provisionados
 
 * AWS EC2
 * Security Group
-* Regras SSH (22)
 * Regras HTTP (80)
-* Chave de acesso (Key Pair)
+* Regras HTTPS (443)
+* Regras SSH (22)
+* Key Pair
 
 ---
 
 # 🔐 Acesso SSH
 
-Após o provisionamento da instância:
+Após o provisionamento:
 
 ```bash
 ssh -i ~/.ssh/chave.pem ubuntu@IP_PUBLICO
@@ -209,8 +249,9 @@ Conceitos praticados:
 * Linux
 * SSH
 * Permissões de arquivos
-* Conectividade em Cloud
+* Segurança
 * Security Groups
+* Conectividade Cloud
 
 ---
 
@@ -218,13 +259,13 @@ Conceitos praticados:
 
 A aplicação foi empacotada utilizando Docker.
 
-## Build da Imagem
+## Build
 
 ```bash
 docker build -t portfolio-devops .
 ```
 
-## Execução Local
+## Execução
 
 ```bash
 docker run -d -p 80:80 portfolio-devops
@@ -234,14 +275,14 @@ Benefícios:
 
 * Portabilidade
 * Padronização
-* Facilidade de Deploy
 * Escalabilidade
+* Facilidade de Deploy
 
 ---
 
 # 📦 GitHub Container Registry (GHCR)
 
-O projeto utiliza o GHCR para armazenamento das imagens Docker.
+O projeto utiliza o GitHub Container Registry para armazenamento e distribuição das imagens Docker.
 
 Fluxo:
 
@@ -249,7 +290,7 @@ Fluxo:
 GitHub Actions
       │
       ▼
-Build Docker
+Docker Build
       │
       ▼
 GHCR
@@ -261,123 +302,175 @@ AWS EC2
 Deploy
 ```
 
-## Benefícios
+Benefícios:
 
-* Controle de versões
+* Versionamento
 * Armazenamento centralizado
-* Integração nativa com GitHub
-* Facilidade de distribuição
+* Integração com GitHub
+* Distribuição simplificada
 
 ---
 
 # 🔄 Pipeline CI/CD
 
-Sempre que uma alteração é enviada para a branch principal:
+A cada alteração enviada para a branch principal:
 
 ```bash
 git add .
-git commit -m "Atualização da aplicação"
+git commit -m "Atualização"
 git push origin main
 ```
 
-O pipeline executa automaticamente:
+A pipeline executa automaticamente:
 
 1. Checkout do código
 2. Build da imagem Docker
 3. Push para GHCR
-4. Atualização da aplicação
-5. Reinício do container
-6. Publicação da nova versão
-
----
-
-# 📖 Jornada do Projeto
-
-## Fase 1 - Desenvolvimento da Aplicação
-
-Criação da página pessoal para apresentação profissional com foco em:
-
-* DevOps
-* SRE
-* Observabilidade
-
----
-
-## Fase 2 - Infraestrutura como Código
-
-Provisionamento completo da infraestrutura utilizando Terraform.
-
-Aprendizados:
-
-* Providers
-* Recursos AWS
-* Estado do Terraform
-* Automação da infraestrutura
-
----
-
-## Fase 3 - Configuração da AWS
-
-Criação e configuração de:
-
-* Instância EC2
-* Security Groups
-* Key Pair
-* Regras de acesso
-
----
-
-## Fase 4 - Conectividade SSH
-
-Desafios enfrentados:
-
-* Timeout na porta 22
-* Validação de Security Groups
-* Verificação do estado da instância
-* Configuração correta da chave PEM
-
----
-
-## Fase 5 - Containerização
-
-Empacotamento da aplicação utilizando Docker.
-
-Objetivos:
-
-* Padronização
-* Portabilidade
-* Facilidade de Deploy
-
----
-
-## Fase 6 - Registro de Imagens
-
-Integração com GitHub Container Registry.
-
-Aprendizados:
-
-* Imagens Docker
-* Versionamento
-* Pull e Push
-* Registro de Containers
-
----
-
-## Fase 7 - Automação
-
-Criação do pipeline CI/CD utilizando GitHub Actions.
+4. SSH para EC2
+5. Pull da nova imagem
+6. Atualização do container
+7. Deploy automático
 
 Fluxo:
 
 ```text
-Push → Build → GHCR → Deploy → Aplicação Atualizada
+Push
+ │
+ ▼
+GitHub Actions
+ │
+ ▼
+Docker Build
+ │
+ ▼
+GHCR
+ │
+ ▼
+EC2
+ │
+ ▼
+Deploy Automático
 ```
 
 ---
 
-## Fase 8 - Publicação
+# 📈 Observabilidade
 
-Disponibilização da aplicação para acesso público através da infraestrutura criada.
+Foi implementada uma stack completa de observabilidade para monitoramento da infraestrutura e containers.
+
+## Prometheus
+
+Responsável pela coleta das métricas.
+
+Monitora:
+
+* CPU EC2
+* Memória EC2
+* Disco EC2
+* Uptime
+* Containers ativos
+* CPU Containers
+* Memória Containers
+* Tráfego de rede
+
+---
+
+## Grafana
+
+Responsável pela visualização dos dados.
+
+Dashboard principal:
+
+* Status da aplicação
+* Status Prometheus
+* Containers ativos
+* Targets monitorados
+* Targets saudáveis
+* Uptime EC2
+* CPU EC2
+* Memória EC2
+* Disco EC2
+* Uso de CPU dos containers
+* Uso de memória dos containers
+* Tráfego da aplicação
+
+---
+
+## Node Exporter
+
+Responsável pela coleta de métricas do sistema operacional Linux.
+
+---
+
+## cAdvisor
+
+Responsável pela coleta de métricas dos containers Docker.
+
+---
+
+## Alertmanager
+
+Integrado ao Prometheus para gerenciamento de alertas.
+
+Alertas já validados:
+
+* Target indisponível
+* Alta utilização de memória
+* Alta utilização de disco
+* Alertas customizados de teste
+
+---
+
+# 🔒 Segurança
+
+Boas práticas aplicadas:
+
+## Portas Públicas
+
+* 80 (Aplicação)
+* 22 (SSH)
+
+## Portas Restritas
+
+Serviços internos de observabilidade não são expostos publicamente:
+
+* 9090 (Prometheus)
+* 9093 (Alertmanager)
+* 9100 (Node Exporter)
+* 8080 (cAdvisor)
+
+Comunicação realizada através da rede Docker interna.
+
+---
+
+# 📖 Principais Desafios e Troubleshooting
+
+Durante o desenvolvimento foram resolvidos diversos problemas reais de infraestrutura:
+
+### GitHub Actions não acessava EC2
+
+* Ajuste de Security Groups
+* Configuração correta do SSH
+
+### Permission denied (publickey)
+
+* Correção dos Secrets do GitHub
+
+### Timeout SSH
+
+* Validação das regras de entrada AWS
+
+### cAdvisor sem métricas
+
+* Ajuste de permissões e montagem de volumes Docker
+
+### Prometheus sem targets
+
+* Correção das configurações de scrape
+
+### Segurança da observabilidade
+
+* Remoção da exposição pública dos exporters
 
 ---
 
@@ -390,6 +483,8 @@ Disponibilização da aplicação para acesso público através da infraestrutur
 ✅ Terraform
 
 ✅ Docker
+
+✅ Docker Compose
 
 ✅ Git
 
@@ -409,51 +504,54 @@ Disponibilização da aplicação para acesso público através da infraestrutur
 
 ✅ Cloud Computing
 
----
+✅ Prometheus
 
-# 📊 Próximas Implementações de Observabilidade
+✅ Grafana
 
-Planejo evoluir este projeto adicionando:
+✅ Alertmanager
 
-* Prometheus
-* Grafana
-* Node Exporter
-* Alertmanager
+✅ Node Exporter
 
-Objetivos:
+✅ cAdvisor
 
-* Coleta de métricas
-* Dashboards operacionais
-* Alertas automatizados
-* Monitoramento de infraestrutura
-* Observabilidade da aplicação
+✅ Observabilidade
+
+✅ Monitoramento de Infraestrutura
+
+✅ Monitoramento de Containers
+
+✅ Troubleshooting
 
 ---
 
 # 🛣️ Roadmap
 
-## Curto Prazo
+## Concluído
 
-* [x] Criar aplicação
-* [x] Containerizar aplicação
-* [x] Criar infraestrutura AWS
-* [x] Configurar CI/CD
-* [x] Publicar aplicação
+* [x] Aplicação Web
+* [x] Docker
+* [x] AWS EC2
+* [x] Terraform
+* [x] GitHub Actions
+* [x] GHCR
+* [x] Deploy Automático
+* [x] Prometheus
+* [x] Grafana
+* [x] Node Exporter
+* [x] cAdvisor
+* [x] Alertmanager
+* [x] Dashboard Executivo
 
-## Médio Prazo
+## Próximas Evoluções
 
-* [ ] Configurar HTTPS
-* [ ] Adicionar domínio próprio
-* [ ] Configurar Nginx Reverso
-* [ ] Implementar Remote State no Terraform
-
-## Longo Prazo
-
+* [ ] Remote State Terraform (S3)
+* [ ] Dashboard dedicado para containers
+* [ ] Integração Alertmanager + Discord
+* [ ] HTTPS com Let's Encrypt
+* [ ] Domínio personalizado
+* [ ] Loki
+* [ ] Centralização de Logs
 * [ ] Kubernetes
-* [ ] Prometheus
-* [ ] Grafana
-* [ ] Alertmanager
-* [ ] Observabilidade Completa
 * [ ] GitOps
 
 ---
@@ -462,7 +560,7 @@ Objetivos:
 
 ## Cassiano Marinho
 
-**DevOps | SRE | Observabilidade**
+DevOps | SRE | Cloud | Observabilidade
 
 ### Tecnologias
 
@@ -471,14 +569,17 @@ Objetivos:
 * Docker
 * Terraform
 * GitHub Actions
+* Prometheus
+* Grafana
 * Observabilidade
 
 ### Atualmente Estudando
 
 * Kubernetes
-* Advanced Terraform State Management
+* GitOps
+* Advanced Terraform
 * Observabilidade
 
 ---
 
-⭐ Este projeto faz parte da minha jornada de transição e evolução na área de DevOps, SRE e Cloud Computing.
+⭐ Este projeto faz parte da minha jornada de evolução profissional na área de DevOps, Cloud Computing, SRE e Observabilidade, buscando aplicar boas práticas utilizadas em ambientes corporativos reais.
