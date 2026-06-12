@@ -1,0 +1,14 @@
+# ==================================
+# Discord Webhook Configuration
+# ==================================
+
+#global:
+#  resolve_timeout: 5m
+
+#route:
+#  receiver: "discord"
+
+#receivers:
+#  - name: "discord"
+#    discord_configs:
+#      - webhook_url: "${DISCORD_WEBHOOK_URL}"

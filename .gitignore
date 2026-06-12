@@ -5,3 +5,6 @@
 *.pem
 *.tfvars
 .env
+
+# Alertmanager secrets
+observability/alertmanager/alertmanager.yml

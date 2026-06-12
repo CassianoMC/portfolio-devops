@@ -4,9 +4,9 @@ services:
     image: prom/prometheus
     container_name: prometheus
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus-data:/prometheus
-      - ./alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
+      - ./prometheus/rules/alert.rules.yml:/etc/prometheus/alert.rules.yml:ro
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"

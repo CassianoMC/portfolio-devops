@@ -29,5 +29,11 @@ groups:
           summary: "Uso alto de disco"
           description: "Disco acima de 85% por mais de 2 minutos."
 
-
-
+      - alert: DiscordTestAlert
+        expr: vector(1)
+        for: 10s
+        labels:
+          severity: test
+        annotations:
+          summary: "Teste de alerta no Discord"
+          description: "Este é um alerta temporário para validar a integração Alertmanager + Discord."
