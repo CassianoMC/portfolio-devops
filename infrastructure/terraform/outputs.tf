@@ -7,5 +7,5 @@ output "instance_public_dns" {
 }
 
 output "ssh_command" {
-  value = "ssh -i ~/.ssh/${var.key_name}.pem ec2-user@${aws_instance.portfolio.public_ip}"
+  value = "ssh -i ~/.ssh/${var.key_name}.pem ubuntu@${aws_instance.portfolio.public_ip}"
 }
