@@ -114,11 +114,11 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### Instância EC2 Provisionada via Terraform
 
-![AWS EC2](docs/images/01-aws-ec2-instance.png)
+![AWS EC2](docs/images/aws-ec2-instance.png)
 
 ### Security Group
 
-![Security Group](docs/images/02-aws-security-group.png)
+![Security Group](docs/images/aws-security-group.png)
 
 ---
 
@@ -126,11 +126,11 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### Execuções do GitHub Actions
 
-![GitHub Actions](docs/images/03-github-actions-runs.png)
+![GitHub Actions](docs/images/github-actions-runs.png)
 
 ### Workflow de Deploy
 
-![Workflow Deploy](docs/images/04-github-actions-workflow.png)
+![Workflow Deploy](docs/images/github-actions-workflow.png)
 
 ---
 
@@ -138,7 +138,7 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### GHCR
 
-![GHCR](docs/images/05-ghcr-package-registry.png)
+![GHCR](docs/images/ghcr-package-registry.png)
 
 ---
 
@@ -146,7 +146,7 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### Docker
 
-![Docker Containers](docs/images/06-docker-containers.png)
+![Docker Containers](docs/images/docker-containers.png)
 
 ---
 
@@ -154,7 +154,7 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### Grafana
 
-![Grafana Dashboard](docs/images/07-grafana-dashboard.png)
+![Grafana Dashboard](docs/images/grafana-dashboard.png)
 
 ---
 
@@ -162,7 +162,7 @@ As imagens abaixo demonstram o funcionamento real da infraestrutura, pipeline CI
 
 ### Alertmanager + Discord
 
-![Alertmanager Discord](docs/images/08-alertmanager-discord.png)
+![Alertmanager Discord](docs/images/alertmanager-discord.png)
 
 ---
 
