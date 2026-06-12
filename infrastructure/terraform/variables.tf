@@ -3,7 +3,7 @@ variable "project_name" {
 }
 
 variable "my_ip" {
-  description = "170.246.44.19"
+  description = "IP publico autorizado para acesso SSH"
   type        = string
 }
 
