@@ -115,7 +115,7 @@ resource "aws_security_group" "portfolio" {
     from_port   = 3000
     to_port     = 3000
     protocol    = "tcp"
-    cidr_blocks = ["170.246.44.19/32"]
+    cidr_blocks = ["170.246.44.109/32"]
   }
 
   egress {
