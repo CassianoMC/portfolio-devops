@@ -495,4 +495,4 @@ DevOps | Cloud | Observabilidade | SRE
 
 ---
 
-⭐ Este projeto faz parte da minha jornada de evolução profissional na área de DevOps, Cloud Computing, SRE e Observabilidade, aplicando práticas utilizadas em ambientes corporativos reais.
+⭐ Este projeto faz parte da minha jornada de evolução profissional na área de DevOps, Cloud Computing, SRE e Observabilidade.
